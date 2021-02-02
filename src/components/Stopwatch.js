@@ -21,7 +21,7 @@ const Stopwatch = () => {
     }
 
     // Declare variables to use in our functions below
-    
+
 
     let startTime;
     let elapsedTime = 0;
@@ -67,12 +67,19 @@ const Stopwatch = () => {
     // Create event listeners
 
     let playButton = document.getElementById("playButton");
+    if(playButton){
+          playButton.addEventListener("click", start, false);
+    }
     let pauseButton = document.getElementById("pauseButton");
-    let resetButton = document.getElementById("resetButton");
+    if(pauseButton){
+          pauseButton.addEventListener("click", pause);
 
-    playButton.addEventListener("click", start);
-    pauseButton.addEventListener("click", pause);
-    resetButton.addEventListener("click", reset);
+    }
+    let resetButton = document.getElementById("resetButton");
+    if(resetButton){
+          resetButton.addEventListener("click", reset);
+    }
+    
 
     return ( 
         <div className="stopwatch">

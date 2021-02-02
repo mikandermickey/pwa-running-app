@@ -7,8 +7,8 @@ import Home from "./views/Home";
 
 // let myDatabase = new Localbase('myDatabase')
 
-OneSignal.initialize('e5b94a5a-a3b9-4f0b-b5a1-54d44283e640', {
-  safari_web_id: "web.onesignal.auto.3a3b4186-8f32-4bbf-a810-be3f3be590a9"
+OneSignal.initialize('6476da31-4579-4739-81b3-12266fba26f4', {
+  safari_web_id: "web.onesignal.auto.39e347a3-7290-467c-af89-3542a6fc2365"
 })
 
 function App() {
