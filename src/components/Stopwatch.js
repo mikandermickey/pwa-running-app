@@ -21,6 +21,7 @@ const Stopwatch = () => {
     }
 
     // Declare variables to use in our functions below
+    
 
     let startTime;
     let elapsedTime = 0;

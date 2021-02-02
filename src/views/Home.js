@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import Stopwatch from '../components/Stopwatch';
 import Distance from '../components/Distance';
 
