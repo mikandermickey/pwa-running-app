@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import Testbase from '../components/Testbase';
+import Distance from '../components/Distance';
 
 
 const Home = () => {
@@ -7,8 +7,7 @@ const Home = () => {
     return ( 
         <>
         <main>
-             
-            <Testbase/>
+             <Distance/>
         </main>
         </>
 
