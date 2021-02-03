@@ -29,8 +29,8 @@ const Distance = ({
         <div>
             <p>Longtitude: {coords.longitude}</p>
             <p>Altitude: {coords.altitude}</p>
-            <button onclick={insertIntoDb}>adduser</button>
-            <button onclick={removeTable}>delete table</button>
+            <button onClick={insertIntoDb}>adduser</button>
+            <button onClick={removeTable}>delete table</button>
         </div>
     ) : (
         <div>Getting the location data&hellip; </div>
