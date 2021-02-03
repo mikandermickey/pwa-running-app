@@ -79,6 +79,7 @@ const Stopwatch = () => {
     if(resetButton){
           resetButton.addEventListener("click", reset);
     }
+
     
 
     return ( 
