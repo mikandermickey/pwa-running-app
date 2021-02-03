@@ -3,24 +3,24 @@ import Localbase from "localbase"
 const Testbase = () => {
 
 
-let myDatabase = new Localbase('myDatabase')
+let myDatabase2 = new Localbase('myDatabase2')
 
     const insertIntoDb = () => {
-        myDatabase.collection('users').add({
+        myDatabase2.collection('userss').add({
             id: 2,
             name: 'Joe',
             age: 58
-          })
+          })    
     }
 
     const removeTable = () => {
-        myDatabase.delete()
+        myDatabase2.delete()
     }
 
     return ( 
         <>
-            <button onClick={insertIntoDb()}>adduser</button>
-            <button onClick={removeTable()}>delete table</button>
+            <button onClick={insertIntoDb}>adduser</button>
+            <button onClick={removeTable}>delete table</button>
         </>
      );
 }

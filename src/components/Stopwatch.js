@@ -42,6 +42,7 @@ const Stopwatch = () => {
         print(timeToString(elapsedTime));
     }, 10);
     showButton("PAUSE");
+    
     }
 
     function pause() {
@@ -79,6 +80,7 @@ const Stopwatch = () => {
     if(resetButton){
           resetButton.addEventListener("click", reset);
     }
+    
 
     
 

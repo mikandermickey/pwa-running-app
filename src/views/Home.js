@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import Stopwatch from '../components/Stopwatch';
 import Distance from '../components/Distance';
+import Testbase from '../components/Testbase';
 
 
 const Home = () => {
@@ -8,10 +8,8 @@ const Home = () => {
     return ( 
         <>
         <main>
-            <Stopwatch/>
-            <Distance dis="0.3km"/> 
-        
-        
+             
+            <Testbase/>
         </main>
         </>
 
