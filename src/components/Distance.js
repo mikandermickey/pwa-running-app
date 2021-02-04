@@ -9,17 +9,16 @@ const Distance = ({
     coords
     }) => {
 
+    
     let myDatabase = new Localbase('myDatabase')
         const insertIntoDb = () => {
-            myDatabase.collection('users').add({
+            setInterval(() => {
+                console.log("triggered")
+                myDatabase.collection('users').add({
                 longitude: coords.longitude,
-                altitude: coords.altitude
+                latitude: coords.latitude,
             })
-        }
-
-    const removeTable = () => {
-        myDatabase.delete()
-    }
+        }, 4000)}
    
     return !isGeolocationAvailable ? ( 
         <div>Your browser does not support Geolocation</div>
@@ -27,10 +26,9 @@ const Distance = ({
         <div>Geolocation is not enabled</div>
     ) : coords ? ( 
         <div>
-            <p>Longtitude: {coords.longitude}</p>
-            <p>Altitude: {coords.altitude}</p>
+            <p>Latitude: {coords.latitude}</p>
             <button onClick={insertIntoDb}>adduser</button>
-            <button onClick={removeTable}>delete table</button>
+            <p>Longtitude: {coords.longitude}</p>
         </div>
     ) : (
         <div>Getting the location data&hellip; </div>
