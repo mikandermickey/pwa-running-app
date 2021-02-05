@@ -1,109 +1,61 @@
-import "../styles/stopwatch.css";
-const Stopwatch = () => {
-    function timeToString(time) {
-    let diffInHrs = time / 3600000;
-    let hh = Math.floor(diffInHrs);
+import React, { useState, useEffect } from "react";
+const Timer = () => {
+  const [second, setSecond] = useState("00");
+  const [minute, setMinute] = useState("00");
+  const [isActive, setIsActive] = useState(false);
+  const [counter, setCounter] = useState(0);
 
-    let diffInMin = (diffInHrs - hh) * 60;
-    let mm = Math.floor(diffInMin);
+  useEffect(() => {
+    let intervalId;
 
-    let diffInSec = (diffInMin - mm) * 60;
-    let ss = Math.floor(diffInSec);
+    if (isActive) {
+      intervalId = setInterval(() => {
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
 
-    let diffInMs = (diffInSec - ss) * 100;
-    let ms = Math.floor(diffInMs);
+        let computedSecond =
+          String(secondCounter).length === 1
+            ? `0${secondCounter}`
+            : secondCounter;
+        let computedMinute =
+          String(minuteCounter).length === 1
+            ? `0${minuteCounter}`
+            : minuteCounter;
 
-    let formattedMM = mm.toString().padStart(2, "0");
-    let formattedSS = ss.toString().padStart(2, "0");
-    let formattedMS = ms.toString().padStart(2, "0");
+        setSecond(computedSecond);
+        setMinute(computedMinute);
 
-    return `${formattedMM}:${formattedSS}:${formattedMS}`;
+        setCounter((counter) => counter + 1);
+      }, 1000);
     }
 
-    // Declare variables to use in our functions below
+    return () => clearInterval(intervalId);
+  }, [isActive, counter]);
 
+  function stopTimer() {
+    setIsActive(false);
+    setCounter(0);
+    setSecond("00");
+    setMinute("00");
+  }
 
-    let startTime;
-    let elapsedTime = 0;
-    let timerInterval;
-
-    // Create function to modify innerHTML
-
-    function print(txt) {
-    document.getElementById("display").innerHTML = txt;
-    }
-
-    // Create "start", "pause" and "reset" functions
-
-    function start() {
-    startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(function printTime() {
-        elapsedTime = Date.now() - startTime;
-        print(timeToString(elapsedTime));
-    }, 10);
-    showButton("PAUSE");
-    
-    }
-
-    function pause() {
-    clearInterval(timerInterval);
-    showButton("PLAY");
-    }
-
-    function reset() {
-    clearInterval(timerInterval);
-    print("00:00:00");
-    elapsedTime = 0;
-    showButton("PLAY");
-    }
-
-    // Create function to display buttons
-
-    function showButton(buttonKey) {
-    const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
-    const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;
-    buttonToShow.style.display = "block";
-    buttonToHide.style.display = "none";
-    }
-    // Create event listeners
-
-    let playButton = document.getElementById("playButton");
-    if(playButton){
-          playButton.addEventListener("click", start, false);
-    }
-    let pauseButton = document.getElementById("pauseButton");
-    if(pauseButton){
-          pauseButton.addEventListener("click", pause);
-
-    }
-    let resetButton = document.getElementById("resetButton");
-    if(resetButton){
-          resetButton.addEventListener("click", reset);
-    }
-    
-
-    
-
-    return ( 
-        <div className="stopwatch">
-      <h1><span className="gold">RUNNING</span> STOPWATCH</h1>
-      <div className="circle">
-        <span className="time" id="display">00:00:00</span>
+  return (
+    <div class="container">
+      <div class="time">
+        <span class="minute">{minute}</span>
+        <span>:</span>
+        <span class="second">{second}</span>
       </div>
-
-      <div className="controls">
-        <button className="buttonPlay">
-          <img id="playButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg" alt="start" />
-
-          <img id="pauseButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg" alt="start" />
+      <div class="buttons">
+        <button onClick={() => setIsActive(!isActive)} class="start">
+          {isActive ? "Pause" : "Start"}
         </button>
-
-        <button className="buttonReset">
-          <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg" alt="start" />
+        <button onClick={stopTimer} class="reset">
+          Reset
         </button>
       </div>
     </div>
-     );
-}
- 
-export default Stopwatch;
+  );
+};
+
+export default Timer;

@@ -4,6 +4,7 @@ import { geolocated } from "react-geolocated";
 import Localbase from "localbase"
 import { getDistance } from 'geolib';
 import { useState } from "react";
+import Stopwatch from './Stopwatch';
 
 const Distance = ({
     dis,
@@ -13,12 +14,21 @@ const Distance = ({
     }) => {
     
     const [totalDistance, setTotalDistance] = useState(0)
-    const style = css`
-        padding: 1em;
+    
+     const style = css`
+        padding: 2em;
         text-transform: uppercase;
         background-color: black;
         color: white;
-        border-radius: 50%;
+        border-radius: 30px;
+    `;
+     const div = css`
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2em;
+    `;
+    const dist = css`
+        text-align: center;
     `;
     
     
@@ -55,12 +65,17 @@ const Distance = ({
     ) : !isGeolocationEnabled ? (
         <div>Geolocation is not enabled</div>
     ) : coords ? ( 
+
         <div>
-            <p>Latitude: {coords.latitude}</p>
-            <button css={style} onClick={insertIntoDb}>add user</button>
-            <button css={style} onClick={HentDB}>Calculate Distance</button>
-            <p>Longtitude: {coords.longitude}</p>
-            <p>{totalDistance}</p>
+        <div css={div}>
+            <button css={style} onClick={insertIntoDb}>Start run</button>
+            <button css={style} onClick={HentDB}>Calculate</button>
+        </div>
+        <h1 css={dist}>{totalDistance}</h1>
+        <div css={div}>
+        <Stopwatch/>
+        
+        </div>
         </div>
     ) : (
         <div>Getting the location data&hellip; </div>
