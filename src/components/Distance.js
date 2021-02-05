@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { geolocated } from "react-geolocated";
 import Localbase from "localbase"
 import { getDistance } from 'geolib';
@@ -12,6 +13,15 @@ const Distance = ({
     }) => {
     
     const [totalDistance, setTotalDistance] = useState(0)
+    const style = css`
+        padding: 1em;
+        text-transform: uppercase;
+        background-color: black;
+        color: white;
+        border-radius: 50%;
+    `;
+    
+    
     
     let myDatabase = new Localbase('myDatabase')
         const insertIntoDb = () => {
@@ -47,8 +57,8 @@ const Distance = ({
     ) : coords ? ( 
         <div>
             <p>Latitude: {coords.latitude}</p>
-            <button onClick={insertIntoDb}>add user</button>
-            <button onClick={HentDB}>Calculate Distance</button>
+            <button css={style} onClick={insertIntoDb}>add user</button>
+            <button css={style} onClick={HentDB}>Calculate Distance</button>
             <p>Longtitude: {coords.longitude}</p>
             <p>{totalDistance}</p>
         </div>
